@@ -9,15 +9,14 @@ A full-stack Flask application that **mathematically simulates** metro train mov
 ```
 metro_sim/
 ├── app.py                    # Flask routes (REST API)
-├── schema.sql                # SQLite schema
-├── seed.py                   # Database seed data (3 lines, 39 stations)
-├── metro.db                  # Auto-generated SQLite database
+├── metro_finel.db                  #  Metro Postgresql database
 ├── requirements.txt
 ├── models/
-│   └── database.py           # SQLite connection helper
+│ 
 ├── services/
 │   ├── simulation.py         # 🧠 Core simulation engine
-│   └── data_access.py        # DB query layer
+│   ├── db.py                 # DB connections
+│   └── data_access.py        # DB query layer   
 └── templates/
     └── index.html            # Frontend: Leaflet map + real-time UI
 ```
@@ -38,10 +37,10 @@ cd metro_sim
 pip install -r requirements.txt
 ```
 
-### 3. Seed the Database
+### 3. Add to Postgresql Database
 
 ```bash
-python seed.py
+psql -U username -d database_name -f metro_finel.sql
 ```
 
 ### 4. Run the Server
@@ -125,16 +124,21 @@ lng = lng1 + (lng2 - lng1) * progress
 Where `progress = elapsed_time_in_segment / segment_duration`.
 
 ---
+# Main Tables
+    routes → Stores metro line details
+    stations → Stores station information
+    trains → Stores train data
+    schedule → Stores train schedules
+    route_stations → Maps stations to routes
+    station_timing → Stores arrival/departure timings
+    Purpose
 
-## Metro Lines (Seed Data)
+## This database module is used to:
 
-| Line | Stations | Frequency | Turnaround | Active Trains |
-|---|---|---|---|---|
-| Red Line | 13 | 6 min | 8 min | ~16 |
-| Blue Line | 14 | 5 min | 8 min | ~18 |
-| Green Line | 12 | 8 min | 10 min | ~13 |
-
----
+    Manage metro station data
+    Handle train scheduling
+    Store route information
+    Support metro simulation and tracking
 
 ## Frontend Features
 
