@@ -71,16 +71,16 @@ Open your browser at **http://localhost:5000**
   {
     "train_id": 3,
     "line_id": 1,
-    "line_name": "Red Line",
+    "line_name": "Aqua Line",
     "line_color": "#E63946",
     "direction": "UP",
     "status": "RUNNING",
-    "from_station": "Janakpuri West",
-    "to_station": "Uttam Nagar West",
+    "from_station": "Vanaz",
+    "to_station": "Anand Nagar",
     "progress": 0.4231,
     "lat": 28.6267,
     "lng": 77.0619,
-    "next_station": "Uttam Nagar West",
+    "next_station": "Anand Nagar",
     "eta_minutes": 1.5
   }
 ]
